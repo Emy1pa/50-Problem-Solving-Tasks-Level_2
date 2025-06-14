@@ -1,38 +1,41 @@
 #include <iostream>
 using namespace std;
 
-void PrintTableHeader() {
-    cout << "\n\n\t\t\t Multiplication Table From 1 to 10 \n";
-    cout << "\n\t";
-    for (int i = 1; i <= 10; i++)
-    {
-        cout << i << "\t";
-    }
-    cout << "\n-------------------------------------------------------------------------------------\n";
+enum enPrimNotPrime { Prime = 1, NotPrime = 2 };
 
+int ReadPositiveNumber(string Message)
+{
+	int Number = 0;
+	do
+	{
+		cout << Message << endl;
+		cin >> Number; 
+	} while (Number <= 0);
+	return Number;
 }
-string ColumnStringSeperator(int i){
-    if (i < 10)
-        return "   |";
-    else
-        return "  |";
-}
-void PrintTableMultiplication() {
 
-    PrintTableHeader();
-    for (int i = 1; i <= 10; i++)
-    {
-        cout << i << ColumnStringSeperator(i);
-        for (int j = 1; j <= 10; j++)
-        {
-            cout <<"\t" << i * j;
-        }
-        cout << endl;
-    }
+enPrimNotPrime CheckPrime(int Number)
+{
+	int M = round(Number / 2); 
+	for (int Counter = 2; Counter <= M; Counter++) 
+	{
+		if (Number % Counter == 0) 
+			return enPrimNotPrime::NotPrime;
+	}
+	return enPrimNotPrime::Prime; 
 }
+void PrintAllPrimeNumbers(int Number){
+	for (int i = 1; i <= Number; i++)
+	{
+		if (CheckPrime(i) == enPrimNotPrime::Prime) {
+			cout << i << endl;
+		}
+	}
+}
+
 
 int main()
 {
-    PrintTableMultiplication();
+	PrintAllPrimeNumbers(ReadPositiveNumber("Please enter a positive number ? "));
 }
 
