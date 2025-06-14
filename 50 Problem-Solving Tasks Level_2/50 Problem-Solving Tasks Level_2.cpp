@@ -22,18 +22,19 @@ bool CheckPerfectNumber(int Number) {
 	}
 	return Sum == Number;
 }
-void PrintIfPerfectNumberOrNot(int Number){
-	if (CheckPerfectNumber(Number))
-		cout << Number << " is perfect \n";
-	else
-		cout << Number << " is not perfect \n";
+void PrintPerfectNumberFrom1ToN(int Number){
+	cout << "\n";
+	cout << "Displaying Perfect Numbers from " << 1 << " To ";
+	cout << Number << " are : " << endl;
+	for (int i = 1; i < Number; i++)
+	{
+		if (CheckPerfectNumber(i))
+			cout << i << endl;
+	}
 }
-
-
-
 
 int main()
 {
-	PrintIfPerfectNumberOrNot(ReadPositiveNumber("Please enter a positive number ?"));
+	PrintPerfectNumberFrom1ToN(ReadPositiveNumber("Please enter a positive number ?"));
 }
 
