@@ -13,19 +13,25 @@ int ReadPositiveNumber(string Message)
 	return Number;
 }
 
-int PrintSumOfDigits(int Number) {
-	int Remainder = 0, Sum= 0;
+int PrintReversedNumber(int Number) {
+	int Remainder = 0, Number2= 0;
 	while (Number > 0) {
-	Remainder = Number % 10;
-	Sum += Remainder;
-	Number /= 10; 
+		Remainder = Number % 10; 
+		Number /= 10;
+		Number2 = Number2 * 10 + Remainder; 
+		/*
+		0 * 10 + 4 = 4;
+		4 * 10 + 3 = 43;
+		43 * 10 + 2	= 432;
+		432 * 10 + 1 = 4321;
+		*/
 	}
-	return Sum;
+	return Number2;
 
 }
 
 int main()
 {
-	cout << "Sum Of Digits = " << PrintSumOfDigits(ReadPositiveNumber("Please enter a positive number ?"));
+	cout << "Reverse is : " << PrintReversedNumber(ReadPositiveNumber("Please enter a positive number ?"));
 }
 
