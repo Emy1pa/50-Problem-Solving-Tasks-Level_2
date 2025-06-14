@@ -1,7 +1,6 @@
 #include <iostream>
 using namespace std;
 
-enum enPrimNotPrime { Prime = 1, NotPrime = 2 };
 
 int ReadPositiveNumber(string Message)
 {
@@ -14,28 +13,27 @@ int ReadPositiveNumber(string Message)
 	return Number;
 }
 
-enPrimNotPrime CheckPrime(int Number)
-{
-	int M = round(Number / 2); 
-	for (int Counter = 2; Counter <= M; Counter++) 
+bool CheckPerfectNumber(int Number) {
+	int Sum = 0;
+	for (int i = 1; i < Number; i++)
 	{
-		if (Number % Counter == 0) 
-			return enPrimNotPrime::NotPrime;
+		if (Number % i == 0)
+			Sum += i;
 	}
-	return enPrimNotPrime::Prime; 
+	return Sum == Number;
 }
-void PrintAllPrimeNumbers(int Number){
-	for (int i = 1; i <= Number; i++)
-	{
-		if (CheckPrime(i) == enPrimNotPrime::Prime) {
-			cout << i << endl;
-		}
-	}
+void PrintIfPerfectNumberOrNot(int Number){
+	if (CheckPerfectNumber(Number))
+		cout << Number << " is perfect \n";
+	else
+		cout << Number << " is not perfect \n";
 }
+
+
 
 
 int main()
 {
-	PrintAllPrimeNumbers(ReadPositiveNumber("Please enter a positive number ? "));
+	PrintIfPerfectNumberOrNot(ReadPositiveNumber("Please enter a positive number ?"));
 }
 
