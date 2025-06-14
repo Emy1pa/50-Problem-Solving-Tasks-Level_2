@@ -13,18 +13,19 @@ int ReadPositiveNumber(string Message)
 	return Number;
 }
 
-void PrintNumberInReversedOrder(int Number) {
-	int Remainder = 0;
-	while (Number >= 1) {
+int PrintSumOfDigits(int Number) {
+	int Remainder = 0, Sum= 0;
+	while (Number > 0) {
 	Remainder = Number % 10;
-	cout << Remainder << endl; 
+	Sum += Remainder;
 	Number /= 10; 
 	}
+	return Sum;
 
 }
 
 int main()
 {
-	PrintNumberInReversedOrder(ReadPositiveNumber("Please enter a positive number ?"));
+	cout << "Sum Of Digits = " << PrintSumOfDigits(ReadPositiveNumber("Please enter a positive number ?"));
 }
 
