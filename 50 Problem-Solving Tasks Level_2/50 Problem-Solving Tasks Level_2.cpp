@@ -13,7 +13,7 @@ int ReadPositiveNumber(string Message)
 	return Number;
 }
 
-int printDigitFrequency(int Number, int DigitFrequency) {
+int checkDigitFrequency(int Number, short DigitFrequency) {
 	int Counter = 0, Remainder = 0;
 	while (Number > 0) {
 		Remainder = Number % 10;
@@ -25,11 +25,20 @@ int printDigitFrequency(int Number, int DigitFrequency) {
 	return Counter;
 
 }
+void PrintDigitFrequency(int Number){
+	int DigitFrequency;
+	for (int i = 1; i < 10; i++)
+	{
+		DigitFrequency = checkDigitFrequency(Number, i);
+		if (DigitFrequency > 0) {
+			cout << "Digit " << i << " Frequency is " << DigitFrequency << " Time(s) \n";
+		}
+	}
+}
+
 
 int main()
 {
-	int Number = ReadPositiveNumber("Please enter a positive number ?");
-	int DigitFrequency = ReadPositiveNumber("Please enter a digit to check ?");
-	cout << "Digit " << DigitFrequency << " Frequency is " << printDigitFrequency(Number, DigitFrequency) << " Time(s).\n";
+	PrintDigitFrequency(ReadPositiveNumber("Please enter a positive number ?"));
 }
 
