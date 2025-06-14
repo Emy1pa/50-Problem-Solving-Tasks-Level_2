@@ -13,28 +13,18 @@ int ReadPositiveNumber(string Message)
 	return Number;
 }
 
-bool CheckPerfectNumber(int Number) {
-	int Sum = 0;
-	for (int i = 1; i < Number; i++)
-	{
-		if (Number % i == 0)
-			Sum += i;
+void PrintNumberInReversedOrder(int Number) {
+	int Remainder = 0;
+	while (Number >= 1) {
+	Remainder = Number % 10;
+	cout << Remainder << endl; 
+	Number /= 10; 
 	}
-	return Sum == Number;
-}
-void PrintPerfectNumberFrom1ToN(int Number){
-	cout << "\n";
-	cout << "Displaying Perfect Numbers from " << 1 << " To ";
-	cout << Number << " are : " << endl;
-	for (int i = 1; i < Number; i++)
-	{
-		if (CheckPerfectNumber(i))
-			cout << i << endl;
-	}
+
 }
 
 int main()
 {
-	PrintPerfectNumberFrom1ToN(ReadPositiveNumber("Please enter a positive number ?"));
+	PrintNumberInReversedOrder(ReadPositiveNumber("Please enter a positive number ?"));
 }
 
