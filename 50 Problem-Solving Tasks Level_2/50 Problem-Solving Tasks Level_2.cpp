@@ -2,31 +2,34 @@
 using namespace std;
 
 
-int ReadPositiveNumber(string Message)
-{
-	int Number = 0;
-	do
-	{
-		cout << Message << endl;
-		cin >> Number; 
-	} while (Number <= 0);
-	return Number;
-}
+//int ReadPositiveNumber(string Message)
+//{
+//	int Number = 0;
+//	do
+//	{
+//		cout << Message << endl;
+//		cin >> Number; 
+//	} while (Number <= 0);
+//	return Number;
+//}
 
-void PrintLetterPattern(int Number) {
-	for (int i = 65; i <= 65 + (Number - 1); i++)
+
+void PrintAllWordsFromAAAToZZZ() {
+	for (int i = 65; i <= 90; i++)
 	{
-		for (int j = 65; j <= i; j++) {
-			cout << char(i);
+		for(int j = 65; j<= 90; j++){
+			for (int k = 65; k <= 90; k++)
+			{
+				cout << char(i) << char(j) << char(k) << "\n";
+			}
+			
 		}
-		cout << endl;
 	}
 }
 
-
 int main()
 {
-	PrintLetterPattern(ReadPositiveNumber("Please enter a positive number ?"));
+	PrintAllWordsFromAAAToZZZ();
 	return 0;
 }
 
