@@ -2,42 +2,36 @@
 using namespace std;
 
 
-string ReadPassword() {
-	string Password;
-	cout << "Please enter a 3-Letter Password (AAA => ZZZ) ?\n";
-	cin >> Password;
-	return Password;
+string ReadText() {
+	string Text;
+	cout << "Please enter a text to encrypt/decrypt ? \n";
+	cin >> Text;
+	return Text;
 }
-
-bool Guess3_LetterPassword() {
-	string Password = ReadPassword();
-	string Word = "";
-	int Counter = 0;
-	for (int i = 65; i <= 90; i++)
+string EncryptionText(string Text){
+	string EncryptionText = "";
+	for (int i = 0; i < Text.length(); i++)
 	{
-		for (int j = 65; j <= 90; j++) {
-			for (int k = 65; k <= 90; k++) {
-				Word += char(i);
-				Word += char(j);
-				Word += char(k);
-				Counter++;
-				cout << "Trial [" << Counter << "]: " << Word << endl;
-				if (Word == Password) {
-					cout << "Password is " << Password << endl;
-					cout << "Found after " << Counter << " Trial(s)" << endl;
-					return true;
-				}
-				Word = "";
-				
-			}
-		}
+		EncryptionText += char((int)Text[i] + 2);
 	}
+	return EncryptionText;
+}
+string DecryptionText(string Text) {
+	string DecryptionText = "";
+	for (int i = 0; i <= Text.length(); i++)
+	{
+		DecryptionText += char((int)Text[i] - 2);
+	}
+	return DecryptionText;
 }
 
 
 int main()
 {
-	Guess3_LetterPassword();
+	string Text = ReadText();
+	cout << "Text Before Encryption: " << Text << endl;
+	cout << "Text After Encryption: " << EncryptionText(Text) << endl;
+	cout << "Text After Decryption: " << DecryptionText(EncryptionText(Text)) << endl;
 	return 0;
 }
 
