@@ -12,31 +12,21 @@ int ReadPositiveNumber(string Message)
 	} while (Number <= 0);
 	return Number;
 }
-int ReverseNumber(int Number){
-	int Remainder = 0, Number2 = 0;
-	while (Number > 0) {
-		Remainder = Number % 10;
-		Number /= 10;
-		Number2 = Number2 * 10 + Remainder;
+
+void InvertedNumberPattern(int Number) {
+	for (int i = Number; i >= 1; i--)
+	{
+		for (int j = 1; j <= i; j++) {
+			cout << i;
+		}
+		cout << endl;
 	}
-	return Number2;
-}
-bool CheckIfPalindrome(int Number){
-	
-	return Number == ReverseNumber(Number);
-}
-void PrintTheResult(int Number){
-	if (CheckIfPalindrome(Number))
-		cout << "Yes, it is a Palindrome number.";
-	else
-		cout << "No, it ns NOT a Palindrome number.";
 }
 
 
 int main()
 {
-	//cout << CheckIfPalindrome(ReadPositiveNumber("Please enter a number ?"));
-	PrintTheResult(ReadPositiveNumber("Please enter a positive number ?"));
+	InvertedNumberPattern(ReadPositiveNumber("Please enter a positive number ?"));
 	return 0;
 }
 
