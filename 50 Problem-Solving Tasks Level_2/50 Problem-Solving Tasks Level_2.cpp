@@ -1,37 +1,18 @@
 #include <iostream>
+#include <cstdlib>
 using namespace std;
 
-
-string ReadText() {
-	string Text;
-	cout << "Please enter a text to encrypt/decrypt ? \n";
-	cin >> Text;
-	return Text;
+int GenerateRandomNumberFrom1To10() {
+	int Number = rand() % 10 + 1;
+	return Number;
 }
-string EncryptionText(string Text){
-	string EncryptionText = "";
-	for (int i = 0; i < Text.length(); i++)
-	{
-		EncryptionText += char((int)Text[i] + 2);
-	}
-	return EncryptionText;
-}
-string DecryptionText(string Text) {
-	string DecryptionText = "";
-	for (int i = 0; i <= Text.length(); i++)
-	{
-		DecryptionText += char((int)Text[i] - 2);
-	}
-	return DecryptionText;
-}
-
 
 int main()
 {
-	string Text = ReadText();
-	cout << "Text Before Encryption: " << Text << endl;
-	cout << "Text After Encryption: " << EncryptionText(Text) << endl;
-	cout << "Text After Decryption: " << DecryptionText(EncryptionText(Text)) << endl;
+	srand(time(0));
+	cout << "Number 1 = " << GenerateRandomNumberFrom1To10() << endl;
+	cout << "Number 2 = " << GenerateRandomNumberFrom1To10() << endl;
+	cout << "Number 3 = " << GenerateRandomNumberFrom1To10() << endl;
 	return 0;
 }
 
