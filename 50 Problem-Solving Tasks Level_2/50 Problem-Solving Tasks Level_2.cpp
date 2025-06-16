@@ -2,7 +2,7 @@
 #include <cstdlib>
 using namespace std;
 
-enum enCharacterType { Number = 1, SmallLetter = 'a', CapitalLetter = 'C', Character = '$' };
+enum enCharacterType { Number = 1, SmallLetter = 2, CapitalLetter = 3, Character = 4 };
 
 int RandomNumber(int From, int To) {
 	int Number = rand() % (To - From + 1) + From;
