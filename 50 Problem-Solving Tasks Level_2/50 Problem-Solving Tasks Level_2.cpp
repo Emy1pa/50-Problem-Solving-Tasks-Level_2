@@ -2,36 +2,50 @@
 #include <cstdlib>
 using namespace std;
 
-enum enCharacterType { Number = 1, SmallLetter = 2, CapitalLetter = 3, Character = 4 };
-
-int RandomNumber(int From, int To) {
+int GetRandomNumber(int From, int To) {
 	int Number = rand() % (To - From + 1) + From;
 	return Number;
 }
 
-char getRandomCharacter(enCharacterType CharacterType){
-	switch (CharacterType)
+int askKeyCount() {
+	int count;
+	cout << "Please enter how many Keys you want to generate ? \n";
+	cin >> count;
+	return count;
+}
+string generateKeySegment() {
+	string segment;
+	for (int i = 1; i <= 4; i++)
 	{
-	case enCharacterType::Number:
-		return char(RandomNumber(48, 57));
-	case enCharacterType::SmallLetter:
-		return char(RandomNumber(97, 122));
-	case enCharacterType::CapitalLetter:
-		return char(RandomNumber(65, 90));
-	case enCharacterType::Character:
-		return char(RandomNumber(33, 47));
-	default:
-		break;
+		segment += char(GetRandomNumber(65, 90));
+	}
+	return segment;
+}
+
+
+string generateFullKey() {
+	string fullKey;
+	for (int i = 1; i <= 4; i++)
+	{
+		fullKey += generateKeySegment();
+		if (i < 4) {
+			fullKey += "-";
+		}
+	}
+	return fullKey;
+}
+void displayGeneratedKeys() {
+	int numberOfKeys = askKeyCount();
+	for (int i = 1; i <= numberOfKeys; i++) {
+		cout << "Key [" << i << "] : " << generateFullKey() << endl;
 	}
 }
+
 
 int main()
 {
 	srand((unsigned)time(NULL));
-	cout << "Random Number = " << getRandomCharacter(enCharacterType::Number) << endl;
-	cout << "Random Capital Letter = " << getRandomCharacter(enCharacterType::CapitalLetter) << endl;
-	cout << "Random Special Character = " << getRandomCharacter(enCharacterType::Character) << endl;
-	cout << "Random Small Letter = " << getRandomCharacter(enCharacterType::SmallLetter) << endl;
+	displayGeneratedKeys();
 	return 0;
 }
 
