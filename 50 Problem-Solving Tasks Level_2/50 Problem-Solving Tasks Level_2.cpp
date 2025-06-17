@@ -34,13 +34,13 @@ void PrintArray(int Arr[100], int arrLength) {
 	}
 	cout << "\n";
 }
-int SumOfArrayNumbers(int Arr[100], int arrLength) {
+int AverageOfRandomNumbers(int Arr[100], int arrLength) {
 	int Sum = 0;
 	for (int i = 0; i < arrLength; i++)
 	{
 		Sum += Arr[i];
 	}
-	return Sum;
+	return Sum / arrLength;
 }
 
 
@@ -54,7 +54,7 @@ int main()
 	cout << "Array Elements : ";
 	PrintArray(arr, arrLength);
 
-	cout << "Sum of all numbers : " << SumOfArrayNumbers(arr, arrLength);
+	cout << "Average of all numbers : " << AverageOfRandomNumbers(arr, arrLength);
 	
 	return 0;
 }
