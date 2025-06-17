@@ -34,14 +34,17 @@ void PrintArray(int Arr[100], int arrLength) {
 	}
 	cout << "\n";
 }
-int AverageOfRandomNumbers(int Arr[100], int arrLength) {
-	int Sum = 0;
+
+void PrintArrayCopy(int Arr[100], int arrLength) {
+	int Arr2[100];
 	for (int i = 0; i < arrLength; i++)
 	{
-		Sum += Arr[i];
+		Arr2[i] = Arr[i];
+		cout << Arr2[i] << " ";
 	}
-	return Sum / arrLength;
 }
+
+
 
 
 int main()
@@ -49,13 +52,14 @@ int main()
 	srand((unsigned)time(NULL));
 
 	int arr[100], arrLength;
+	
 	FillRandomNumbersToArray(arr, arrLength);
 	
-	cout << "Array Elements : ";
+	cout << "Array 1 Elements : ";
 	PrintArray(arr, arrLength);
 
-	cout << "Average of all numbers : " << AverageOfRandomNumbers(arr, arrLength);
-	
+	cout << "Array 2 Elements after copy: ";
+	PrintArrayCopy(arr, arrLength);
 	return 0;
 }
 
