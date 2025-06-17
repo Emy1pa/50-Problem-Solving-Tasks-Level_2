@@ -34,14 +34,13 @@ void PrintArray(int Arr[100], int arrLength) {
 	}
 	cout << "\n";
 }
-int PrintMinNumber(int Arr[100], int arrLength) {
-	int MinNumber = Arr[0];
+int SumOfArrayNumbers(int Arr[100], int arrLength) {
+	int Sum = 0;
 	for (int i = 0; i < arrLength; i++)
 	{
-		if (Arr[i] <  MinNumber)
-			MinNumber = Arr[i];
+		Sum += Arr[i];
 	}
-	return MinNumber;
+	return Sum;
 }
 
 
@@ -55,7 +54,7 @@ int main()
 	cout << "Array Elements : ";
 	PrintArray(arr, arrLength);
 
-	cout << "Min Number is : " << PrintMinNumber(arr, arrLength);
+	cout << "Sum of all numbers : " << SumOfArrayNumbers(arr, arrLength);
 	
 	return 0;
 }
