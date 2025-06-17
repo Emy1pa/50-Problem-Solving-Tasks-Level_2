@@ -2,50 +2,51 @@
 #include <cstdlib>
 using namespace std;
 
-int ReadPositiveNumber(string Message){
-	int Number;
-	do
-	{
-		cout << Message << endl;
-		cin >> Number;
-	} while (Number < 0);
-	return Number;
+//int ReadPositiveNumber(string Message){
+//	int Number;
+//	do
+//	{
+//		cout << Message << endl;
+//		cin >> Number;
+//	} while (Number < 0);
+//	return Number;
+//}
+
+int GenerateRandomNumber(int From, int To){
+	int randomNumber = rand() % (To - From + 1) + From;
+	return randomNumber;
 }
 
-void ReadArrayElements(int Arr[], int &Length) {
-	Length = ReadPositiveNumber("Please how many Inputs you want to enter ? ");
-	for (int i = 0; i < Length; i++)
+void ReadArray(int Arr[100], int &arrLength) {
+	cout << "Enter number of elements: \n";
+	cin >> arrLength;
+	cout << "\n";
+	for (int i = 0; i < arrLength; i++)
 	{
-		cout << "Please enter element " << (i + 1) << endl;
-		cin >> Arr[i];
+		Arr[i] = GenerateRandomNumber(1, 100);
 	}
+	
 }
-void PrintArrayElements(int Arr[], int Length) {
-	for (int i = 0; i < Length; i++)
+void PrintArray(int Arr[100], int arrLength) {
+	for (int i = 0; i < arrLength; i++)
 	{
-		cout << "Element [" << (i + 1) << "] : " << Arr[i] << endl;
+		cout << Arr[i] << " ";
 	}
+	cout << "\n";
 }
-int PrintTheCheckedNumber(int Arr[], int Length, int NumberToCheck) {
-	int Counter = 0;
-	for (int i = 0; i < Length; i++)
-	{
-		if (NumberToCheck == Arr[i])
-			Counter++;
-	}
-	return Counter;
-}
-
 
 
 int main()
 {
-	int Arr[100], Length, NumberToCheck, RepeatedTimes;
-	ReadArrayElements(Arr, Length);
-	PrintArrayElements(Arr, Length);
-	NumberToCheck = ReadPositiveNumber("\nPlease enter a number to check ?");
-	RepeatedTimes = PrintTheCheckedNumber(Arr, Length, NumberToCheck);
-	cout << NumberToCheck << " is repeated " << RepeatedTimes << " time(s) \n";
+	srand((unsigned)time(NULL));
+
+	int arr[100], arrLength;
+	ReadArray(arr, arrLength);
+	
+	cout << "Array Elements : ";
+	PrintArray(arr, arrLength);
+
+	
 	return 0;
 }
 
