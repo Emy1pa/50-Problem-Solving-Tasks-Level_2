@@ -17,7 +17,7 @@ int GenerateRandomNumber(int From, int To){
 	return randomNumber;
 }
 
-void ReadArray(int Arr[100], int &arrLength) {
+void FillRandomNumbersToArray(int Arr[100], int &arrLength) {
 	cout << "Enter number of elements: \n";
 	cin >> arrLength;
 	cout << "\n";
@@ -34,6 +34,15 @@ void PrintArray(int Arr[100], int arrLength) {
 	}
 	cout << "\n";
 }
+int PrintMaxNumber(int Arr[100], int arrLength) {
+	int MaxNumber = 0;
+	for (int i = 0; i < arrLength; i++)
+	{
+		if (Arr[i] > MaxNumber)
+			MaxNumber = Arr[i];
+	}
+	return MaxNumber;
+}
 
 
 int main()
@@ -41,11 +50,12 @@ int main()
 	srand((unsigned)time(NULL));
 
 	int arr[100], arrLength;
-	ReadArray(arr, arrLength);
+	FillRandomNumbersToArray(arr, arrLength);
 	
 	cout << "Array Elements : ";
 	PrintArray(arr, arrLength);
 
+	cout << "Max Number is : " << PrintMaxNumber(arr, arrLength);
 	
 	return 0;
 }
