@@ -3,6 +3,16 @@
 #include <cmath>
 using namespace std;
 
+int ReadPositiveNumber(string Message)
+{
+	int Number = 0;
+	do
+	{
+		cout << Message << endl;
+		cin >> Number;
+	} while (Number <= 0);
+	return Number;
+}
 
 
 
@@ -11,10 +21,7 @@ int GenerateRandomNumber(int From, int To){
 	return randomNumber;
 }
 
-void FillRandomNumbersToArray(int Arr[100], int &arrLength) {
-	cout << "Enter number of elements: \n";
-	cin >> arrLength;
-	cout << "\n";
+void FillArrayWithRandomNumbers(int Arr[100], int &arrLength) {
 	for (int i = 0; i < arrLength; i++)
 	{
 		Arr[i] = GenerateRandomNumber(1, 100);
@@ -22,22 +29,21 @@ void FillRandomNumbersToArray(int Arr[100], int &arrLength) {
 	
 }
 
+
+
 void PrintArray(int Arr[100], int arrLength) {
 	for (int i = 0; i < arrLength; i++)
-	{
 		cout << Arr[i] << " ";
-	}
 	cout << "\n";
 }
-
-void PrintSumOfBothArray(int ArrSource[100], int ArrDestination[100], int arrLength){
-	int Sum = 0;
-	for (int i = 0; i < arrLength; i++)
+void CopyArrayInReverse(int ArrSource[100], int ArrDestination[100], int& arrLength){
+	for (int i = 0; i <arrLength; i++)
 	{
-		Sum = ArrDestination[i] + ArrSource[i];
-		cout << Sum << " ";
+		ArrDestination[i] = ArrSource[arrLength - (i + 1)];
 	}
+	cout << endl;
 }
+
 
 
 
@@ -46,24 +52,21 @@ int main()
 {
 	srand((unsigned)time(NULL));
 
-	int arr[100], arrLength;
-	
-	FillRandomNumbersToArray(arr, arrLength);
-	
-	int Arr2[100];
-	cout << "Array 1 Elements : ";
+	int arr[100], arrLength, arr2[100];
+	arrLength = ReadPositiveNumber("Please enter number of elements ?");
+
+	FillArrayWithRandomNumbers(arr, arrLength);
+
+	cout << "Array 1 elements: ";
 	PrintArray(arr, arrLength);
-	cout << endl;
 
-	FillRandomNumbersToArray(Arr2, arrLength);
-	cout << "Array 2 Elements: ";
-	PrintArray(Arr2, arrLength);
+	CopyArrayInReverse(arr, arr2, arrLength);
+	cout << "Array 2 elements after copying array 1 in reversed order: ";
+	PrintArray(arr2, arrLength);
 	cout << endl;
+	
 
-	cout << "Sum of array 1 and array 2 elements: ";
-	PrintSumOfBothArray(arr, Arr2, arrLength);
 	cout << endl;
-
 	return 0;
 }
 
