@@ -1,72 +1,41 @@
 #include <iostream>
 #include <cstdlib>
-#include <cmath>
-using namespace std;
-
-int ReadPositiveNumber(string Message)
+using namespace std;int RandomNumber(int From, int To)
 {
-	int Number = 0;
-	do
+	int RandNum = rand() % (To - From + 1) + From;
+	return RandNum;
+}
+
+string generateKeySegment() {
+	string segment;
+	for (int i = 1; i <= 4; i++)
 	{
-		cout << Message << endl;
-		cin >> Number;
-	} while (Number <= 0);
-	return Number;
-}
-
-void SwapNumbers(int &Num1, int &Num2){
-	int Temp = Num1;
-	Num1 = Num2;
-	Num2 = Temp;
-}
-
-int GenerateRandomNumber(int From, int To){
-	int randomNumber = rand() % (To - From + 1) + From;
-	return randomNumber;
-}
-
-void FillArrayWithNumsFrom1ToN(int Arr[100], int &arrLength) {
-	for (int i = 0; i <= arrLength; i++)
-	{
-		Arr[i] = i + 1;
+		segment += char(RandomNumber(65, 90));
 	}
-	
+	return segment;
 }
-void DisplayArrayElementsAfterShuffle(int Arr[100], int arrLength) {
-	for (int i = 0; i < arrLength; i++)
+string generateFullKey() {
+	string fullKey;
+	for (int i = 1; i <= 4; i++)
 	{
-		SwapNumbers(Arr[GenerateRandomNumber(1, arrLength) - 1], Arr[GenerateRandomNumber(1, arrLength) - 1]);
+		fullKey += generateKeySegment();
+		if (i < 4) {
+			fullKey += "-";
+		}
 	}
+	return fullKey;
 }
-
-
-void PrintArray(int Arr[100], int arrLength) {
-	for (int i = 0; i < arrLength; i++)
-		cout << Arr[i] << " ";
-	cout << "\n";
-}
-
-
-
-
-
-int main()
-{
-	srand((unsigned)time(NULL));
-
-	int arr[100], arrLength;
-	arrLength = ReadPositiveNumber("Please enter number of elements ?");
-
-	FillArrayWithNumsFrom1ToN(arr, arrLength);
-
-	cout << "Array elements before shuffle: ";
-	PrintArray(arr, arrLength);
-	cout << endl;
+void FillArrayWithKeys(string arr[100], int& arrLength) {
+		cout << "Enter number of Keys you want to generate : \n";
+		cin >> arrLength;
+		for (int i = 0; i < arrLength; i++)
+			arr[i] = generateFullKey();}void PrintKeys(string arr[100], int arrLength) {	for (int i = 0; i < arrLength; i++)
+	{
+		cout << "Array[" << i << "]: " << arr[i] << endl;
+	}}int main(){	srand((unsigned)time(NULL));
+	string arr[100];
+	int arrLength;
 	
-	cout << "Array elements after shuffle: ";
-	DisplayArrayElementsAfterShuffle(arr, arrLength);
-	PrintArray(arr, arrLength);
-	cout << endl;
-	return 0;
-}
-
+	FillArrayWithKeys(arr, arrLength);
+	PrintKeys(arr, arrLength);
+		return 0;}
