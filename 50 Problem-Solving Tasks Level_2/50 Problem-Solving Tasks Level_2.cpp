@@ -17,25 +17,16 @@ void FillArrayWithRandomNumbers(int arr[100], int& arrLength) {
 	}
 }
 
-//void  InputUserNumbersInArray(int arr[100], int& arrLength) {
-//	bool AddMore = true;
-//	do
-//	{
-//		AddArrayElement(ReadNumber(), arr, arrLength);
-//		cout << "\nDo you want to add more numbers ? [0]: No, [1]: Yes?";
-//		cin >> AddMore;
-//	} while (AddMore);
-//}
-
 
 void PrintArray(int arr[100], int arrLength) {	for (int i = 0; i < arrLength; i++)
 	{
 		//cout << Counter << endl;
 		cout << arr[i] << " ";
-	}	cout << endl;}void CopyingArrayUsingAddArrayElement(int arr[100], int arr2[100], int arrLength, int& arr2Length) {
+	}	cout << endl;}void CopyingOddNumbersUsingAddArrayElement(int arr[100], int arr2[100], int arrLength, int& arr2Length) {
 	for (int i = 0; i < arrLength; i++)
 	{
-		AddArrayElement(arr[i], arr2, arr2Length);
+		if (arr[i] % 2 != 0)
+			AddArrayElement(arr[i], arr2, arr2Length);
 	}}int main() {	srand((unsigned)time(NULL));
 	int arr[100], arr2[100], Number = 0, arr2Length = 0;
 
@@ -50,9 +41,9 @@ void FillArrayWithRandomNumbers(int arr[100], int& arrLength) {
 	cout << endl;
 
 
-	CopyingArrayUsingAddArrayElement(arr, arr2, arrLength, arr2Length);
+	CopyingOddNumbersUsingAddArrayElement(arr, arr2, arrLength, arr2Length);
 
-	cout << "Array 2 elements after copy: \n";
+	cout << "Array 2 elements Odd Numbers: \n";
 	PrintArray(arr2, arr2Length);
 	cout << endl;
 
