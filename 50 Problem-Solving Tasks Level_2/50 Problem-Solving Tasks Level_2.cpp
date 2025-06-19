@@ -6,36 +6,21 @@ using namespace std;int RandomNumber(int From, int To)
 	return RandNum;
 }
 
-string generateKeySegment() {
-	string segment;
-	for (int i = 1; i <= 4; i++)
-	{
-		segment += char(RandomNumber(65, 90));
-	}
-	return segment;
-}
-string generateFullKey() {
-	string fullKey;
-	for (int i = 1; i <= 4; i++)
-	{
-		fullKey += generateKeySegment();
-		if (i < 4) {
-			fullKey += "-";
-		}
-	}
-	return fullKey;
-}
-void FillArrayWithKeys(string arr[100], int& arrLength) {
-		cout << "Enter number of Keys you want to generate : \n";
+
+
+void FillArrayWithRandomNumbers(int arr[100], int& arrLength) {
+		cout << "Enter number of elements you want to generate : \n";
 		cin >> arrLength;
 		for (int i = 0; i < arrLength; i++)
-			arr[i] = generateFullKey();}void PrintKeys(string arr[100], int arrLength) {	for (int i = 0; i < arrLength; i++)
+			arr[i] = RandomNumber(1, 100);}void PrintRandomNumbers(int arr[100], int arrLength) {	for (int i = 0; i < arrLength; i++)
 	{
-		cout << "Array[" << i << "]: " << arr[i] << endl;
-	}}int main(){	srand((unsigned)time(NULL));
-	string arr[100];
-	int arrLength;
+		cout << arr[i] << " ";
+	}}void PrintSearchedNumber(int arr[100], int arrLength, int &SearchedNumber) {	cout << "\nPlease enter a number to search for ? \n";	cin >> SearchedNumber;	bool found = false;	for (int i = 0; i < arrLength; i++ ) {		if (arr[i] == SearchedNumber) {			cout << "The number you are looking for is : " << SearchedNumber << endl;			cout << "The number found at position : " << i << endl;			cout << "The number found its order : " << (i + 1) << endl;			found = true; 			break;		}		}	if (!found) {		cout << "\nThe number you are looking for is : " << SearchedNumber << endl;		cout << "The number is not found :-( " << endl;	}}int main(){	srand((unsigned)time(NULL));
+	int arr[100], arrLength, searchedNumber;
 	
-	FillArrayWithKeys(arr, arrLength);
-	PrintKeys(arr, arrLength);
-		return 0;}
+	FillArrayWithRandomNumbers(arr, arrLength);
+	cout << "Array 1 elements: " << endl;
+	PrintRandomNumbers(arr, arrLength);
+	cout << endl;
+
+	PrintSearchedNumber(arr, arrLength, searchedNumber);	return 0;}
