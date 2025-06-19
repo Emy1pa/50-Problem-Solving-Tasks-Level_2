@@ -1,37 +1,59 @@
 #include <iostream>
 #include <cstdlib>
-using namespace std;int ReadPositiveNumber(string Message) {	int Number = 0;	do
-	{
-		cout << Message << endl;
-		cin >> Number;
-	} while (Number < 0);	return Number;}int RandomNumber(int From, int To)
+using namespace std;int ReadNumber()
 {
-	int RandNum = rand() % (To - From + 1) + From;
-	return RandNum;
+	int Number;
+	cout << "\nPlease enter numbers of elements you want to enter? \n";
+	cin >> Number;
+	return Number;
+}int RandomNumber(int From, int To) {	int RandomNumber = rand() % (To - From + 1) + From;	return RandomNumber;}void AddArrayElement(int Number, int arr[100], int& arrLength) {
+	arrLength++;
+	arr[arrLength - 1] = Number;
+}
+void FillArrayWithRandomNumbers(int arr[100], int& arrLength) {
+	for (int i = 0; i < arrLength; i++)
+	{
+		arr[i] = RandomNumber(1, 100);
+	}
 }
 
+//void  InputUserNumbersInArray(int arr[100], int& arrLength) {
+//	bool AddMore = true;
+//	do
+//	{
+//		AddArrayElement(ReadNumber(), arr, arrLength);
+//		cout << "\nDo you want to add more numbers ? [0]: No, [1]: Yes?";
+//		cin >> AddMore;
+//	} while (AddMore);
+//}
 
 
-void FillArrayWithRandomNumbersDynamically(int arr[100], int &Counter) {
-	char Response = 'Y';	int Number = 0;	Counter = 0;	do
-	{
-		Number = ReadPositiveNumber("Please enter a number ?");
-		arr[Counter] = Number;
-		cout << "Do you want to add more numbers (Y/N) ? \n";
-		cin >> Response;
-		Counter++;
-	} while (Response == 'Y' || Response == 'y');}void PrintNumersInDynamicArray(int arr[100], int Counter) {	for (int i = 0; i < Counter; i++)
+void PrintArray(int arr[100], int arrLength) {	for (int i = 0; i < arrLength; i++)
 	{
 		//cout << Counter << endl;
 		cout << arr[i] << " ";
-	}}int main(){	srand((unsigned)time(NULL));
-	int arr[100], counter;
-	
-	FillArrayWithRandomNumbersDynamically(arr, counter);
-	
-	cout << "Array Length : " << counter << endl;
-	cout << "Array Elements: ";
-	PrintNumersInDynamicArray(arr, counter);
+	}	cout << endl;}void CopyingArrayUsingAddArrayElement(int arr[100], int arr2[100], int arrLength, int& arr2Length) {
+	for (int i = 0; i < arrLength; i++)
+	{
+		AddArrayElement(arr[i], arr2, arr2Length);
+	}}int main() {	srand((unsigned)time(NULL));
+	int arr[100], arr2[100], Number = 0, arr2Length = 0;
+
+	int arrLength = ReadNumber();
+
+	FillArrayWithRandomNumbers(arr, arrLength);
+
 	cout << endl;
 
-		return 0;}
+	cout << "Array 1 elements : \n";
+	PrintArray(arr, arrLength);
+	cout << endl;
+
+
+	CopyingArrayUsingAddArrayElement(arr, arr2, arrLength, arr2Length);
+
+	cout << "Array 2 elements after copy: \n";
+	PrintArray(arr2, arr2Length);
+	cout << endl;
+
+	return 0;}
