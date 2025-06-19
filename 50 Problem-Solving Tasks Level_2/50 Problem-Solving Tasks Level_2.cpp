@@ -1,6 +1,10 @@
 #include <iostream>
 #include <cstdlib>
-using namespace std;int RandomNumber(int From, int To)
+using namespace std;int ReadPositiveNumber(string Message) {	int Number = 0;	do
+	{
+		cout << Message << endl;
+		cin >> Number;
+	} while (Number < 0);	return Number;}int RandomNumber(int From, int To)
 {
 	int RandNum = rand() % (To - From + 1) + From;
 	return RandNum;
@@ -8,27 +12,26 @@ using namespace std;int RandomNumber(int From, int To)
 
 
 
-void FillArrayWithRandomNumbers(int arr[100], int& arrLength) {
-		cout << "Enter number of elements you want to generate : \n";
-		cin >> arrLength;
-		for (int i = 0; i < arrLength; i++)
-			arr[i] = RandomNumber(1, 100);}void PrintRandomNumbers(int arr[100], int arrLength) {	for (int i = 0; i < arrLength; i++)
+void FillArrayWithRandomNumbersDynamically(int arr[100], int &Counter) {
+	char Response = 'Y';	int Number = 0;	Counter = 0;	do
 	{
+		Number = ReadPositiveNumber("Please enter a number ?");
+		arr[Counter] = Number;
+		cout << "Do you want to add more numbers (Y/N) ? \n";
+		cin >> Response;
+		Counter++;
+	} while (Response == 'Y' || Response == 'y');}void PrintNumersInDynamicArray(int arr[100], int Counter) {	for (int i = 0; i < Counter; i++)
+	{
+		//cout << Counter << endl;
 		cout << arr[i] << " ";
-	}}void PrintSearchedNumber(int arr[100], int arrLength, int &SearchedNumber) {	cout << "\nPlease enter a number to search for ? \n";	cin >> SearchedNumber;	bool found = false;	for (int i = 0; i < arrLength; i++ ) {		if (arr[i] == SearchedNumber) {			cout << "The number you are looking for is : " << SearchedNumber << endl;			cout << "The number found at position : " << i << endl;			cout << "The number found its order : " << (i + 1) << endl;			found = true; 			break;		}		}	if (!found) {		cout << "\nThe number you are looking for is : " << SearchedNumber << endl;		cout << "The number is not found :-( " << endl;	}}short FindNumberPositionInArray(int Number, int arr[100], int arrLength) {	for (int i = 0; i < arrLength; i++)
-	{
-		if (arr[i] == Number) 
-			return i;
-		
-	}	return -1;}bool FindSearchedNumber(int Number , int arr[100], int arrLength) {	if (FindNumberPositionInArray(Number, arr, arrLength) == -1)		return false;	else		return true;}int ReadNumber() {	int Number; 	cout << "\nPlease enter a number to search for ? \n";	cin >> Number;	return Number;}int main(){	srand((unsigned)time(NULL));
-	int arr[100], arrLength, searchedNumber;
+	}}int main(){	srand((unsigned)time(NULL));
+	int arr[100], counter;
 	
-	FillArrayWithRandomNumbers(arr, arrLength);
-	cout << "Array 1 elements: " << endl;
-	PrintRandomNumbers(arr, arrLength);
+	FillArrayWithRandomNumbersDynamically(arr, counter);
+	
+	cout << "Array Length : " << counter << endl;
+	cout << "Array Elements: ";
+	PrintNumersInDynamicArray(arr, counter);
 	cout << endl;
 
-	int Number = ReadNumber();
-	cout << "The number you're looking for is: " << Number << endl;
-
-	bool NumberFound = FindSearchedNumber(Number, arr, arrLength);	if (NumberFound) {		cout << "\nYes, the number is found :-) \n";	}	else {		cout << "No, the number is not found :-(" << endl;	}	return 0;}
+		return 0;}
