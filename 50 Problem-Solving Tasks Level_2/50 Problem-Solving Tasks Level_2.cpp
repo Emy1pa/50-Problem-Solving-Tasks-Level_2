@@ -1,6 +1,15 @@
 #include <iostream>
 #include <cstdlib>
-using namespace std;int ReadNumber()
+using namespace std;enum enPrimNotPrime { Prime = 1, NotPrime = 2 };enPrimNotPrime CheckPrime(int Number)
+{
+	int M = round(Number / 2);
+	for (int Counter = 2; Counter <= M; Counter++)
+	{
+		if (Number % Counter == 0)
+			return enPrimNotPrime::NotPrime;
+	}
+	return enPrimNotPrime::Prime;
+}int ReadNumber()
 {
 	int Number;
 	cout << "\nPlease enter numbers of elements you want to enter? \n";
@@ -22,10 +31,10 @@ void FillArrayWithRandomNumbers(int arr[100], int& arrLength) {
 	{
 		//cout << Counter << endl;
 		cout << arr[i] << " ";
-	}	cout << endl;}void CopyingOddNumbersUsingAddArrayElement(int arr[100], int arr2[100], int arrLength, int& arr2Length) {
+	}	cout << endl;}void CopyingPrimeNumbersUsingAddArrayElement(int arr[100], int arr2[100], int arrLength, int& arr2Length) {
 	for (int i = 0; i < arrLength; i++)
 	{
-		if (arr[i] % 2 != 0)
+		if (CheckPrime(arr[i]) == enPrimNotPrime::Prime)
 			AddArrayElement(arr[i], arr2, arr2Length);
 	}}int main() {	srand((unsigned)time(NULL));
 	int arr[100], arr2[100], Number = 0, arr2Length = 0;
@@ -41,9 +50,9 @@ void FillArrayWithRandomNumbers(int arr[100], int& arrLength) {
 	cout << endl;
 
 
-	CopyingOddNumbersUsingAddArrayElement(arr, arr2, arrLength, arr2Length);
+	CopyingPrimeNumbersUsingAddArrayElement(arr, arr2, arrLength, arr2Length);
 
-	cout << "Array 2 elements Odd Numbers: \n";
+	cout << "Array 2 Prime Numbers: \n";
 	PrintArray(arr2, arr2Length);
 	cout << endl;
 
