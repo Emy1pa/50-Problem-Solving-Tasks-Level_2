@@ -6,9 +6,9 @@ using namespace std;int RandomNumber(int From, int To){	int RandomNumber = ra
 	}}void PrintArray(int arr[100], int arrLength) {	for (int i = 0; i < arrLength; i++)
 	{
 		cout << arr[i] << " ";
-	}	cout << endl;}int PositiveNumberCount(int arr[100], int arrLength) {	int Counter = 0;	for (int i = 0; i < arrLength; i++)
+	}	cout << endl;}int NegativeNumberCount(int arr[100], int arrLength) {	int Counter = 0;	for (int i = 0; i < arrLength; i++)
 	{
-		if (arr[i] > 0) {
+		if (arr[i] < 0) {
 			Counter++;
 		}
 	}	return Counter;}int main() {	srand((unsigned)time(NULL));
@@ -19,4 +19,4 @@ using namespace std;int RandomNumber(int From, int To){	int RandomNumber = ra
 
 	cout << "Array Elements : " << endl;
 	PrintArray(arr, arrLength);
-	cout << endl; 	cout << "Positive Numbers Count is: " << PositiveNumberCount(arr, arrLength) << endl;		return 0;}
+	cout << endl; 	cout << "Negative Numbers Count is: " << NegativeNumberCount(arr, arrLength) << endl;		return 0;}
