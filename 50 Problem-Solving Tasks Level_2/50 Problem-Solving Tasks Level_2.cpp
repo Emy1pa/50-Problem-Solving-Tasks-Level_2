@@ -16,4 +16,4 @@ using namespace std;void FillArray(int arr[100], int &arrLength) {		arrLen
 
 	cout << "Array Elements : " << endl;
 	PrintArray(arr, arrLength);
-	cout << endl; 	if (IsPalindromeArrayCheck(arr, arrLength)) {		cout << "Yes array is Palindrome \n";	}	return 0;}
+	cout << endl; 	if (IsPalindromeArrayCheck(arr, arrLength)) {		cout << "Yes array is Palindrome \n";	}	else {		cout << "No array is not Palindrome \n";	}	return 0;}
