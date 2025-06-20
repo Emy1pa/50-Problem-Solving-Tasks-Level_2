@@ -1,9 +1,9 @@
 #include <iostream>
 #include <cmath>
 //#include <cstdlib>
-using namespace std;float ReadNumber() {	float Number;	cout << "Please enter a number ? \n";	cin >> Number;	return Number;}float RoundOfTheNumber(float Number){	int IntPart = int(Number);	cout << IntPart << endl;	float DecimalPart = Number - IntPart;	if (DecimalPart >= 0.5) {			return IntPart + 1;	}	else if (DecimalPart <= -0.5) {		return IntPart - 1;	}	else {		return IntPart;	}}int main() {	//srand((unsigned)time(NULL));
+using namespace std;float ReadNumber() {	float Number;	cout << "Please enter a number ? \n";	cin >> Number;	return Number;}int FloorOfTheNumber(float Number){	if (Number > 0)		return (int)Number;	else		return (int)Number - 1;}int main() {	//srand((unsigned)time(NULL));
 	float Number = ReadNumber();
 
-	cout << "My Round Result: " << RoundOfTheNumber(Number) << endl;
-	cout << "C++ Round Result: " << round(Number) << endl;
+	cout << "My Floor Result: " << FloorOfTheNumber(Number) << endl;
+	cout << "C++ Floor Result: " << floor(Number) << endl;
 		return 0;}
